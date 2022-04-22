@@ -51,6 +51,12 @@ blockquote {
   text-align: center;
 }
 
+
+.is_equal {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+}
+
 // Caption
 
 .caption {
@@ -398,6 +404,10 @@ footer.sticky-bottom {
   }
 }
 
+// News
+.news {
+  margin-top: 2rem;
+}
 
 // Publications
 
@@ -471,8 +481,8 @@ footer.sticky-bottom {
         a.btn {
           color: var(--global-text-color);
           border: 1px solid var(--global-text-color);
-          padding-left: 1rem;
-          padding-right: 1rem;
+          padding-left: 0.6rem;
+          padding-right: 0.6rem;
           padding-top: 0.25rem;
           padding-bottom: 0.25rem;
           &:hover {

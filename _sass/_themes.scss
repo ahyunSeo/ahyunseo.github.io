@@ -24,6 +24,11 @@
     padding-top: 12px;
     display : block;
   }
+  .fa-adjust {
+    padding-left: 10px;
+    padding-top: 12px;
+    display : block;
+  }
 }
 
 html[data-theme='dark'] {
@@ -47,5 +52,10 @@ html[data-theme='dark'] {
   }
   .fa-moon {
     display : none;
+  }
+  .fa-adjust {
+    padding-left: 10px;
+    padding-top: 12px;
+    display : block;
   }
 }
