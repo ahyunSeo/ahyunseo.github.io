@@ -107,8 +107,20 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  teaching:
+    defaults:
+      layout: post
+    output: true
+    permalink: /teaching/:path/
+  honors:
+    defaults:
+      layout: post
+    output: true
+    permalink: /honors/:path/
 
 news_limit: 5
+honors_limit: 5
+teaching_limit: 5
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

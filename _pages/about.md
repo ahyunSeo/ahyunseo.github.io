@@ -16,6 +16,7 @@ profile:
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
+teaching: true
 ---
 
 I am a Ph.D student in the Department of Computer Science and Engineering at [POSTECH](https://www.postech.ac.kr), South Korea, working as a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/). My research lies in the areas of computer vision and machine learning, especially in the problems of symmetry detection, image segmentation and equivariant learning.
