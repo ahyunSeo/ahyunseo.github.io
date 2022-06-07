@@ -21,6 +21,7 @@ teaching: true
 
 I am a Ph.D student in the Department of Computer Science and Engineering at [POSTECH](https://www.postech.ac.kr), South Korea, working as a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/). My research lies in the areas of computer vision and machine learning, especially in the problems of symmetry detection, image segmentation and equivariant learning.
 
+Feel free to contact me via <a href="mailto:ahyun.seo@postech.ac.kr">email</a> or visit my <a href='https://github.com/ahyunSeo'>Github</a> and <a href='https://scholar.google.com/citations?user=FNmQSdAAAAAJ&hl=ko'>Google Scholar</a>.
 
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder. -->
