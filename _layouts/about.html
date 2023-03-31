@@ -43,6 +43,21 @@ layout: default
             {%- include selected_papers.html %}
           {%- endif %}
 
+          {% if page.experience -%}
+          <!-- TA -->
+          {%- include experience.html %}
+          {%- endif %}
+
+          {% if page.honors -%}
+          <!-- TA -->
+          {%- include honors.html %}
+          {%- endif %}
+
+          {% if page.education -%}
+          <!-- TA -->
+          {%- include education.html %}
+          {%- endif %}
+
           {% if page.teaching -%}
           <!-- TA -->
           {%- include teaching.html %}

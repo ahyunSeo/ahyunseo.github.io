@@ -117,10 +117,23 @@ collections:
       layout: post
     output: true
     permalink: /honors/:path/
+  experience:
+    defaults:
+      layout: post
+    output: true
+    permalink: /experience/:path/
+  education:
+    defaults:
+      layout: post
+    output: true
+    permalink: /education/:path/
+
 
 news_limit: 5
 honors_limit: 5
 teaching_limit: 5
+experience_limit: 5
+education_limit: 5
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
