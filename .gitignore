@@ -1,3 +1,5 @@
+.history
+.gitignore
 _site
 .bundle
 .sass-cache
