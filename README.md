@@ -1,3 +1,0 @@
-## resume
-
-A personal website.
