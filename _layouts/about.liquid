@@ -58,15 +58,15 @@ layout: default
 
     <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
+      <h2 style="margin-top: 1rem;">
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">publications</a>
       </h2>
       {% include selected_papers.liquid %}
     {% endif %}
 
     <!-- Experience -->
     {% if page.experience %}
-      <h2>
+      <h2 style="margin-top: 1rem;">
         <a href="assets/pdf/AhyunSeoResume.pdf" style="color: inherit">experience</a>
       </h2>
       {% include experience.liquid %}
@@ -74,7 +74,7 @@ layout: default
 
     <!-- Education -->
     {% if page.experience %}
-      <h2>
+      <h2 style="margin-top: 1rem;">
         <a href="assets/pdf/AhyunSeoResume.pdf" style="color: inherit">education</a>
       </h2>
       {% include education.liquid %}
