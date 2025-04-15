@@ -64,6 +64,22 @@ layout: default
       {% include selected_papers.liquid %}
     {% endif %}
 
+    <!-- Experience -->
+    {% if page.experience %}
+      <h2>
+        <a href="assets/pdf/AhyunSeoResume.pdf" style="color: inherit">experience</a>
+      </h2>
+      {% include experience.liquid %}
+    {% endif %}
+
+    <!-- Education -->
+    {% if page.experience %}
+      <h2>
+        <a href="assets/pdf/AhyunSeoResume.pdf" style="color: inherit">education</a>
+      </h2>
+      {% include education.liquid %}
+    {% endif %}
+
     <!-- Social -->
     {% if page.social %}
       <div class="social">
