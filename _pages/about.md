@@ -25,7 +25,11 @@ announcements:
   limit: 5 # leave blank to include all the news in the `_news` folder
 ---
 
-I recently received my Ph.D. in Computer Science and Engineering from [POSTECH](https://www.postech.ac.kr), South Korea, where I was a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/). My dissertation, _“Symmetry Detection via Equivariant Representations and Geometric Priors,”_ explores novel approaches for detecting visual symmetries using structured representations informed by group theory and 3D geometry. My research focuses on computer vision and machine learning, with particular interests in symmetry detection, equivariant learning, and geometric reasoning.
+I recently received my Ph.D. in Computer Science and Engineering from [POSTECH](https://www.postech.ac.kr), South Korea, where I was a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/).
+
+My dissertation, _“Symmetry Detection via Equivariant Representations and Geometric Priors,”_ explores novel approaches for detecting visual symmetries using structured representations informed by group theory and 3D geometry.
+
+My research focuses on computer vision and machine learning, with particular interests in symmetry detection, equivariant learning, and geometric reasoning.
 
 Feel free to contact me via <a href="mailto:ahyunseo.cv@gmail.com">email</a> or visit my <a href='https://github.com/ahyunSeo'>Github</a> and <a href='https://scholar.google.com/citations?user=bW5iOH4AAAAJ&hl=ko&authuser=2'>Google Scholar</a>.
 
