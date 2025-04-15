@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: 
+subtitle:
 # You are welcome to visit my <a href='https://github.com/ahyunSeo'>Github</a> and <a href='https://scholar.google.com/citations?user=FNmQSdAAAAAJ&hl=ko'>Google Scholar</a>.
 
 profile:
@@ -31,10 +31,9 @@ latest_posts:
 I recently received my Ph.D. in Computer Science and Engineering from [POSTECH](https://www.postech.ac.kr), South Korea, where I was a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/).  
 My research focuses on computer vision and machine learning, with particular interests in symmetry detection, equivariant learning, and geometric reasoning.
 
-My dissertation, *“Symmetry Detection via Equivariant Representations and Geometric Priors,”* explores novel approaches for detecting visual symmetries using structured representations informed by group theory and 3D geometry.
+My dissertation, _“Symmetry Detection via Equivariant Representations and Geometric Priors,”_ explores novel approaches for detecting visual symmetries using structured representations informed by group theory and 3D geometry.
 
 Feel free to contact me via <a href="mailto:ahyunseo.cv@gmail.com">email</a> or visit my <a href='https://github.com/ahyunSeo'>Github</a> and <a href='https://scholar.google.com/citations?user=bW5iOH4AAAAJ&hl=ko&authuser=2'>Google Scholar</a>.
-
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder. -->
 
