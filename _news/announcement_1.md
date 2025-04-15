@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2022-03-01
+date: 2021-07-26
 inline: true
 related_posts: false
 ---
 
-A paper is accepted in [CVPR 2022](https://cvpr2022.thecvf.com).
+A paper is accepted in [ICCV 2021](https://iccv2021.thecvf.com).

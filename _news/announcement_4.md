@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2025-02-07
+date: 2025-02-27
 inline: true
 ---
 
-I have successfully earned my Ph.D. in Computer Science and Engineering.
+A paper is accepted in [CVPR 2025](https://cvpr2022.thecvf.com).

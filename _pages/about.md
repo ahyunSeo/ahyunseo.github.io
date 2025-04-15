@@ -21,11 +21,6 @@ announcements:
   enabled: true # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
-
-latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
 ---
 
 I recently received my Ph.D. in Computer Science and Engineering from [POSTECH](https://www.postech.ac.kr), South Korea, where I was a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/).  
