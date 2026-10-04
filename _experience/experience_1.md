@@ -7,7 +7,9 @@ inline: true
 [NVIDIA](https://nvidia.com/) (Remote) \
 _Machine learning engineer intern, AV Perception Team_
 
+<!--
 - Collaborated closely with mentors: Taeeun Choe and Jungseock Joo.
 - Generated synthetic data using DRIVE SIM to support autonomous vehicle (AV) perception.
 - Developed a multi-camera 3D viewpoint adaptation model for bird’s-eye view segmentation.
 - Evaluated the robustness of 3D perception models across diverse camera configurations.
+-->
