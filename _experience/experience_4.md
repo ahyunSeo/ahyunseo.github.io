@@ -5,4 +5,4 @@ inline: true
 ---
 
 [42dot](https://42dot.ai) \
-_AI Model Engineer_
+_AI Model Engineer, Atria AI Model Team_
