@@ -12,5 +12,6 @@ Gemfile.lock
 assets/libs/
 node_modules/
 vendor
-.ideaCLAUDE.md
+.idea
+CLAUDE.md
 logs/
