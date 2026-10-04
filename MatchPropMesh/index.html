@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RGBD-to-3D Object Mesh Refinement via Depth Matching and Symmetry Propagation</title>
+    <meta
+      name="description"
+      content="A lightweight, plug-and-play RGBD-to-3D refinement framework that improves the mesh of any RGB-to-3D reconstructor without retraining. ACCV 2026."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="RGBD-to-3D Object Mesh Refinement via Depth Matching and Symmetry Propagation" />
+    <meta
+      property="og:description"
+      content="Plug-and-play mesh refinement for any RGB-to-3D reconstructor via depth matching and symmetry propagation. ACCV 2026."
+    />
+    <meta property="og:url" content="https://ahyunseo.github.io/MatchPropMesh/" />
+    <meta property="og:image" content="https://ahyunseo.github.io/MatchPropMesh/static/images/overview.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --text: #222;
+        --muted: #5b6370;
+        --accent: #1f6feb;
+        --border: #e3e6ea;
+        --soft: #f6f8fa;
+        --good: #1a7f37;
+        --max: 960px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: #fff;
+        color: var(--text);
+        font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 17px;
+        line-height: 1.65;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header.hero {
+        text-align: center;
+        padding: 56px 0 24px;
+      }
+      h1 {
+        font-size: 2.1rem;
+        line-height: 1.25;
+        margin: 0 0 18px;
+        font-weight: 700;
+      }
+      .venue {
+        display: inline-block;
+        font-weight: 600;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        margin-bottom: 14px;
+      }
+      .authors {
+        font-size: 1.15rem;
+        margin: 0 0 4px;
+      }
+      .authors span + span {
+        margin-left: 1.4em;
+      }
+      .affils {
+        color: var(--muted);
+        margin: 0 0 22px;
+      }
+      .affils span + span {
+        margin-left: 1.2em;
+      }
+      sup {
+        font-size: 0.7em;
+        line-height: 0;
+      }
+      .buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 999px;
+        background: #363636;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+      .btn:hover {
+        background: #111;
+        text-decoration: none;
+      }
+      .btn.disabled {
+        background: #b5b9bf;
+        cursor: default;
+        pointer-events: none;
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+      section {
+        padding: 28px 0;
+      }
+      h2 {
+        font-size: 1.55rem;
+        text-align: center;
+        margin: 0 0 18px;
+      }
+      h3 {
+        font-size: 1.1rem;
+        margin: 0 0 6px;
+      }
+      p {
+        margin: 0 0 14px;
+      }
+      .abstract p {
+        text-align: justify;
+      }
+      figure {
+        margin: 0;
+      }
+      figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+      }
+      figcaption {
+        color: var(--muted);
+        font-size: 0.93rem;
+        margin-top: 10px;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 22px;
+      }
+      .step {
+        background: var(--soft);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+        font-size: 0.95rem;
+      }
+      .step .num {
+        display: inline-flex;
+        width: 26px;
+        height: 26px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--text);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .step p {
+        margin: 0;
+      }
+      .note {
+        text-align: center;
+        color: var(--muted);
+        margin-top: 16px;
+      }
+      .table-scroll {
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        margin: 0 auto;
+        font-size: 0.93rem;
+        min-width: 560px;
+      }
+      th,
+      td {
+        padding: 6px 12px;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      thead th {
+        border-bottom: 2px solid var(--text);
+      }
+      td.model,
+      th.model {
+        text-align: left;
+      }
+      td.ds {
+        font-weight: 700;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        border-bottom: 2px solid var(--border);
+      }
+      tr.last td {
+        border-bottom: 2px solid var(--border);
+      }
+      .diff {
+        color: var(--good);
+        font-size: 0.85em;
+      }
+      .gap {
+        height: 24px;
+      }
+      pre {
+        background: var(--soft);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        overflow-x: auto;
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        margin-top: 24px;
+        padding: 24px 0 40px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      @media (max-width: 720px) {
+        body {
+          font-size: 16px;
+        }
+        header.hero {
+          padding-top: 36px;
+        }
+        h1 {
+          font-size: 1.55rem;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .abstract p {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero wrap">
+      <div class="venue">ACCV 2026</div>
+      <h1>RGBD-to-3D Object Mesh Refinement via<br />Depth Matching and Symmetry Propagation</h1>
+      <p class="authors">
+        <span><a href="https://ahyunseo.github.io">Ahyun Seo</a><sup>1</sup></span>
+        <span><a href="http://cvlab.postech.ac.kr/~mcho/">Minsu Cho</a><sup>2,3</sup></span>
+      </p>
+      <p class="affils">
+        <span><sup>1</sup>KAIST</span>
+        <span><sup>2</sup>POSTECH</span>
+        <span><sup>3</sup>RLWRLD</span>
+      </p>
+      <div class="buttons">
+        <a class="btn disabled" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6V2zm8 1.5V8h4.5L14 3.5zM8 12h8v1.5H8V12zm0 3h8v1.5H8V15zm0 3h5v1.5H8V18z" /></svg>
+          Paper (coming soon)
+        </a>
+        <a class="btn disabled" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"
+            />
+          </svg>
+          Code (coming soon)
+        </a>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section>
+        <figure>
+          <img src="static/images/overview.jpg" alt="Overview of the three-stage refinement pipeline" width="2000" height="952" />
+          <figcaption>
+            <strong>Overview.</strong> The depth-guided vertex update rasterizes the camera-frame mesh to find the visible vertices and moves the matched ones
+            to the back-projected depth points. The symmetry-guided vertex update mirrors these corrections across the detected plane from the
+            camera-facing side onto the occluded side. A smoothness solver then propagates the sparse displacements over the full mesh.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="abstract">
+        <h2>Abstract</h2>
+        <p>
+          Single-view 3D object reconstruction has advanced rapidly, yet many methods still produce meshes that are visually plausible but
+          geometrically inconsistent with the input view, especially near depth discontinuities and self-occlusions. We present a lightweight,
+          plug-and-play RGBD-to-3D refinement framework that improves the mesh of any RGB-to-3D reconstructor without retraining. Given a single depth
+          map at inference time, we first correct the observed surface by bipartite matching between visible mesh vertices and back-projected depth
+          points. To refine occluded regions, we estimate a dominant bilateral symmetry plane and mirror the visible corrections onto the occluded side.
+          We then propagate these sparse corrections over the full mesh with a smoothness solver. Unlike optimization-heavy test-time refinement, every
+          stage is a single closed-form solve, which makes the method orders of magnitude faster. Experiments on GSO and OmniObject3D with five
+          reconstruction backbones show consistent improvements, which persist with pseudo-depth from an off-the-shelf monocular estimator, larger
+          benefits from symmetry on symmetric objects, and favorable accuracy and runtime against prior refinement methods. The refinement also improves
+          an RGB-D-to-mesh reconstructor and transfers to real captures with noisy sensor depth.
+        </p>
+      </section>
+
+      <section>
+        <h2>Method</h2>
+        <p>
+          Given an initial mesh from any single-view reconstructor, a depth map of the source view, and the camera pose and intrinsics, we estimate
+          per-vertex displacements in three stages.
+        </p>
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <h3>Depth matching</h3>
+            <p>
+              We rasterize the mesh to find its visible vertices and match them one-to-one to back-projected depth points with a GPU auction solver.
+              Matched vertices move onto the observed surface.
+            </p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h3>Symmetry transfer</h3>
+            <p>
+              We pick the dominant bilateral symmetry plane with a rasterized signed-distance criterion, then mirror the corrected visible vertices
+              onto matched vertices on the occluded side.
+            </p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h3>Smooth propagation</h3>
+            <p>
+              The sparse displacements act as Dirichlet handles in a cotangent-Laplacian system, solved once to spread them smoothly over the whole
+              mesh.
+            </p>
+          </div>
+        </div>
+        <p class="note">Every stage is a single closed-form solve, with no per-instance optimization.</p>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>
+          The refinement lowers Chamfer Distance and raises F-score for all five reconstructors on both datasets, with the largest gains for weaker
+          initial meshes and at the stricter F-score threshold.
+        </p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th class="model">Backbone</th>
+                <th colspan="2">Chamfer Distance ↓</th>
+                <th colspan="2">F-score (0.05) ↑</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Initial</th>
+                <th>Refined</th>
+                <th>Initial</th>
+                <th>Refined</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ds" rowspan="5">GSO</td>
+                <td class="model">LGM</td>
+                <td>0.0438</td>
+                <td><b>0.0306</b> <span class="diff">(−0.0132)</span></td>
+                <td>0.6715</td>
+                <td><b>0.7983</b> <span class="diff">(+0.1268)</span></td>
+              </tr>
+              <tr>
+                <td class="model">CRM</td>
+                <td>0.0365</td>
+                <td><b>0.0248</b> <span class="diff">(−0.0117)</span></td>
+                <td>0.7473</td>
+                <td><b>0.8585</b> <span class="diff">(+0.1112)</span></td>
+              </tr>
+              <tr>
+                <td class="model">SF3D</td>
+                <td>0.0352</td>
+                <td><b>0.0236</b> <span class="diff">(−0.0116)</span></td>
+                <td>0.7658</td>
+                <td><b>0.8693</b> <span class="diff">(+0.1035)</span></td>
+              </tr>
+              <tr>
+                <td class="model">SPAR3D</td>
+                <td>0.0356</td>
+                <td><b>0.0248</b> <span class="diff">(−0.0108)</span></td>
+                <td>0.7671</td>
+                <td><b>0.8597</b> <span class="diff">(+0.0926)</span></td>
+              </tr>
+              <tr class="last">
+                <td class="model">InstantMesh</td>
+                <td>0.0283</td>
+                <td><b>0.0205</b> <span class="diff">(−0.0078)</span></td>
+                <td>0.8358</td>
+                <td><b>0.8950</b> <span class="diff">(+0.0592)</span></td>
+              </tr>
+              <tr>
+                <td class="ds" rowspan="5">Omni</td>
+                <td class="model">LGM</td>
+                <td>0.0397</td>
+                <td><b>0.0291</b> <span class="diff">(−0.0106)</span></td>
+                <td>0.7185</td>
+                <td><b>0.8119</b> <span class="diff">(+0.0934)</span></td>
+              </tr>
+              <tr>
+                <td class="model">CRM</td>
+                <td>0.0334</td>
+                <td><b>0.0233</b> <span class="diff">(−0.0101)</span></td>
+                <td>0.7833</td>
+                <td><b>0.8697</b> <span class="diff">(+0.0864)</span></td>
+              </tr>
+              <tr>
+                <td class="model">SF3D</td>
+                <td>0.0311</td>
+                <td><b>0.0210</b> <span class="diff">(−0.0101)</span></td>
+                <td>0.8075</td>
+                <td><b>0.8910</b> <span class="diff">(+0.0835)</span></td>
+              </tr>
+              <tr>
+                <td class="model">SPAR3D</td>
+                <td>0.0331</td>
+                <td><b>0.0238</b> <span class="diff">(−0.0093)</span></td>
+                <td>0.7945</td>
+                <td><b>0.8673</b> <span class="diff">(+0.0728)</span></td>
+              </tr>
+              <tr class="last">
+                <td class="model">InstantMesh</td>
+                <td>0.0320</td>
+                <td><b>0.0229</b> <span class="diff">(−0.0091)</span></td>
+                <td>0.8011</td>
+                <td><b>0.8720</b> <span class="diff">(+0.0709)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Mesh refinement on Google Scanned Objects (GSO) and OmniObject3D with ground-truth depth of the input view.</p>
+        <p>
+          The gains persist with pseudo-depth from a monocular estimator (UniDepth-V2) and with real sensor depth on YCB-V. On Pix3D, refinement takes
+          1.8&nbsp;s per instance, compared with about 1.8k&nbsp;s for the optimization-based MeTTA.
+        </p>
+      </section>
+
+      <section>
+        <h2>Qualitative Results</h2>
+        <figure>
+          <img src="static/images/qual_gso.jpg" alt="Qualitative results on GSO" width="2000" height="1265" loading="lazy" />
+          <figcaption>
+            <strong>GSO.</strong> For each mesh, the center view matches the input view and the left/right views are novel viewpoints. The bottom block shows
+            failure cases: thin or dense structures can be distorted, and imperfect alignment biases the occluded regions.
+          </figcaption>
+        </figure>
+        <div class="gap"></div>
+        <figure>
+          <img src="static/images/qual_omni.jpg" alt="Qualitative results on OmniObject3D" width="2000" height="1341" loading="lazy" />
+          <figcaption>
+            <strong>OmniObject3D.</strong> For each mesh, the center view matches the input view and the left/right views are novel viewpoints.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>BibTeX</h2>
+        <pre><code>@inproceedings{seo2026matchpropmesh,
+  title     = {RGBD-to-3D Object Mesh Refinement via Depth Matching and Symmetry Propagation},
+  author    = {Seo, Ahyun and Cho, Minsu},
+  booktitle = {Asian Conference on Computer Vision (ACCV)},
+  year      = {2026}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <a href="https://ahyunseo.github.io">Ahyun Seo</a> · 2026
+    </footer>
+  </body>
+</html>
