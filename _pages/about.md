@@ -25,7 +25,9 @@ announcements:
   limit: 5 # leave blank to include all the news in the `_news` folder
 ---
 
-I recently received my Ph.D. in Computer Science and Engineering from [POSTECH](https://www.postech.ac.kr), South Korea, where I was a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/).
+I am an AI Model Engineer at [42dot](https://42dot.ai). Before joining 42dot, I was a postdoctoral researcher at [KAIST](https://www.kaist.ac.kr/en/) and POSTECH.
+
+I received my Ph.D. in Computer Science and Engineering from [POSTECH](https://www.postech.ac.kr), South Korea, in 2025, where I was a member of the [Computer Vision Lab](http://cvlab.postech.ac.kr/lab/), advised by Prof. [Minsu Cho](http://cvlab.postech.ac.kr/~mcho/).
 
 My dissertation, _“Symmetry Detection via Equivariant Representations and Geometric Priors,”_ explores novel approaches for detecting visual symmetries using structured representations informed by group theory and 3D geometry.
 
